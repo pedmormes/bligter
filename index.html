@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bligter</title>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Bligter</div>
+            <ul class="nav-links">
+                <li><a href="#como-funciona">Cómo funciona</a></li>
+                <li><a href="#por-que">Por qué elegirnos</a></li>
+                <li><a href="#medios">Medios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        <a href="#solicitar" class="nav-cta">Solicitar artículo</a>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+
+    </header>
+    <div class="mobile-menu">
+        <a href="#como-funciona" onclick="document.getElementById('mobileMenu').classList.toggle('active')">Cómo funciona</a>
+        <a href="#por-que" onclick="document.getElementById('mobileMenu').classList.toggle('active')">Por qué elegirnos</a>
+        <a href="#medios" onclick="document.getElementById('mobileMenu').classList.toggle('active')">Medios</a>
+        <a href="#contacto" onclick="document.getElementById('mobileMenu').classList.toggle('active')">Contacto</a>
+    </div>
+ 
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Artículos para publicar en tu medio</h1>
+            <p>Creamos contenido para medios digitales</p>
+            <a href="#solicitar" class="cta-button">SOLICITAR ARTÍCULO</a>
+        </div>
+    </section>
+
+    <section id="como-funciona">
+        <div class="cf-left">
+            <h2>CÓMO<br>FUNCIONA</h2>
+            <p>Escribimos artículos relevantes para los lectores de tu medio</p>
+        </div>
+        <div class="cf-right">
+            <div class="cf-item">
+            <div class="cf-check">✓</div>
+            <div class="cf-text">Contenido sobre empleo en tu localidad. <span class="badge-gratis">¡GRATIS!</span></div>
+            </div>
+            <div class="cf-item">
+            <div class="cf-check">✓</div>
+            <div class="cf-text">Contenido sobre vivienda en tu localidad. <span class="badge-gratis">¡GRATIS!</span></div>
+            </div>
+            <div class="cf-item">
+                <div class="cf-check">✓</div>
+                <div class="cf-text">
+                    Contenido sobre motor. <span class="badge-gratis">¡GRATIS!</span>
+                </div>
+            </div>
+            <div class="cf-item">
+                <div class="cf-check">✓</div>
+                <div class="cf-text">
+                    Otros contenidos, a un coste de 5 a 20€ por artículo: dinos la temática y te preparamos el artículo.
+                </div>
+            </div>
+            <p class="cf-note">
+                En los artículos podrás definir la longitud del texto, el formato, incluir una imagen, etc.<br><br>
+                No realizamos contenidos sobre actualidad política, económica, social, etc.
+            </p>
+    </div>
+    </section>
+
+    <section id="por-que">
+         <h2>Por qué elegirnos</h2>
+        <div class="cards-grid">
+            <div class="cards-item">
+                <div class="card">
+                    <div class="card-icon">🤖</div>
+                    <p>
+                        Artículos creados con ayuda de la IA y revisados por personas
+                    </p>
+                </div>
+
+            </div>
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <p>Contenido exclusivo optimizado para SEO</p>
+                    <span class="badge-gratuito">GRATUITO</span>
+                </div>
+                    <div class="card">
+                    <div class="card-icon">⚡</div>
+                    <p>Entregas rápidas y listas para copiar y pegar</p>
+                </div>
+        </div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
