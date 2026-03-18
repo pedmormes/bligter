@@ -9,22 +9,19 @@
 
     </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">Bligter</div>
-            <ul class="nav-links">
-                <li><a href="#como-funciona">Cómo funciona</a></li>
-                <li><a href="#por-que">Por qué elegirnos</a></li>
-                <li><a href="#medios">Medios</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        <a href="#solicitar" class="nav-cta">Solicitar artículo</a>
-            <div class="hamburger">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-        </nav>
+    <nav>
+    <span class="nav-logo">BLIG<span>TER</span></span>
+    <ul class="nav-links">
+        <li><a href="#como-funciona">Cómo funciona</a></li>
+        <li><a href="#por-que">Por qué elegirnos</a></li>
+        <li><a href="#medios">Medios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="#solicitar" class="nav-cta">Solicitar artículo</a>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+    </button>
+    </nav>
 
     </header>
     <div class="mobile-menu">
@@ -206,6 +203,19 @@
   </div>
 </footer>
 
+<div id="cookie-banner">
+  <div id="cookie-content">
+    <p>🍪 Usamos cookies propias y de terceros para mejorar tu experiencia.
+       Puedes aceptarlas todas o configurarlas según tus preferencias.</p>
+    <div id="cookie-buttons">
+      <button id="btn-rechazar">Solo necesarias</button>
+      <button id="btn-configurar">Configurar</button>
+      <button id="btn-aceptar">Aceptar todas</button>
+    </div>
+  </div>
+</div>
+ 
+<!-- ── MODAL DE CONFIGURACIÓN DE COOKIES ────────────── -->
 <div id="cookie-modal">
   <div id="cookie-modal-box">
     <h3>🍪 Configurar cookies</h3>
