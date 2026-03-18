@@ -88,3 +88,74 @@ function showT(i) {
  
 function nextT() { tIdx = (tIdx + 1) % testimonials.length; showT(tIdx); }
 function prevT() { tIdx = (tIdx - 1 + testimonials.length) % testimonials.length; showT(tIdx); }
+
+// ── GESTIÓN DE COOKIES ────────────────────────────────
+
+// Guarda el consentimiento en localStorage
+function guardarConsentimiento(analiticas, marketing) {
+  localStorage.setItem('cookies_configuradas', 'true');
+  localStorage.setItem('cookies_analiticas', analiticas);
+  localStorage.setItem('cookies_marketing', marketing);
+  ocultarBanner();
+  aplicarCookies(analiticas, marketing);
+}
+
+// Oculta el banner
+function ocultarBanner() {
+  document.getElementById('cookie-banner').style.display = 'none';
+  document.getElementById('cookie-modal').style.display  = 'none';
+}
+
+// Activa scripts según consentimiento
+function aplicarCookies(analiticas, marketing) {
+  if (analiticas) {
+    console.log('✅ Google Analytics activado');
+    // Aquí pegarías el script de GA:
+    // const s = document.createElement('script');
+    // s.src = 'https://www.googletagmanager.com/gtag/js?id=TU_ID';
+    // document.head.appendChild(s);
+  }
+  if (marketing) {
+    console.log('✅ Cookies de marketing activadas');
+    // Aquí activarías píxel de Meta, etc.
+  }
+}
+
+// Al cargar la página, comprueba si ya eligió
+window.addEventListener('DOMContentLoaded', () => {
+  if (!localStorage.getItem('cookies_configuradas')) {
+    document.getElementById('cookie-banner').style.display = 'block';
+  } else {
+    // Ya eligió antes: aplicar su preferencia guardada
+    const analiticas = localStorage.getItem('cookies_analiticas') === 'true';
+    const marketing  = localStorage.getItem('cookies_marketing')  === 'true';
+    aplicarCookies(analiticas, marketing);
+  }
+});
+
+// Botón: Solo necesarias
+document.getElementById('btn-rechazar').addEventListener('click', () => {
+  guardarConsentimiento(false, false);
+});
+
+// Botón: Aceptar todas
+document.getElementById('btn-aceptar').addEventListener('click', () => {
+  guardarConsentimiento(true, true);
+});
+
+// Botón: Configurar → abre modal
+document.getElementById('btn-configurar').addEventListener('click', () => {
+  document.getElementById('cookie-modal').style.display = 'flex';
+});
+
+// Botón: Cancelar modal
+document.getElementById('btn-cancelar').addEventListener('click', () => {
+  document.getElementById('cookie-modal').style.display = 'none';
+});
+
+// Botón: Guardar preferencias del modal
+document.getElementById('btn-guardar').addEventListener('click', () => {
+  const analiticas = document.getElementById('ck-analiticas').checked;
+  const marketing  = document.getElementById('ck-marketing').checked;
+  guardarConsentimiento(analiticas, marketing);
+});
