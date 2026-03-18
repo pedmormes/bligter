@@ -58,3 +58,33 @@ document.getElementById('btnEnviar').addEventListener('click', () => {
   document.getElementById('msg').value   = '';
   document.getElementById('cemail').value = '';
 });
+
+const testimonials = [
+  {
+    quote: '"No teníamos una sección de empleo y ahora es una de las más leídas y compartidas. Desde que usamos Bligter, cada semana recibimos un artículo con las ofertas de empleo más interesantes en nuestra localidad que los lectores agradecen."',
+    name: 'Julia Sancristobal'
+  },
+  {
+    quote: '"Gracias a Bligter hemos podido ofrecer contenido de vivienda actualizado sin necesidad de contratar redactores. Totalmente recomendable para cualquier medio digital."',
+    name: 'Carlos Mediavilla'
+  },
+  {
+    quote: '"La sección de motor que nos envían cada semana es siempre relevante y bien escrita. Nuestros lectores la valoran mucho y la comparten habitualmente."',
+    name: 'Ana Torregrosa'
+  }
+];
+ 
+let tIdx = 0;
+ 
+function showT(i) {
+  const card = document.getElementById('testimonialCard');
+  card.style.opacity = '0';
+  setTimeout(() => {
+    document.getElementById('tQuote').textContent = testimonials[i].quote;
+    document.getElementById('tName').textContent  = testimonials[i].name;
+    card.style.opacity = '1';
+  }, 180);
+}
+ 
+function nextT() { tIdx = (tIdx + 1) % testimonials.length; showT(tIdx); }
+function prevT() { tIdx = (tIdx - 1 + testimonials.length) % testimonials.length; showT(tIdx); }
