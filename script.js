@@ -27,27 +27,77 @@ function validEmail(e) {
 }
  
 // ── Formulario: Solicitar artículo ────────────────────
-document.getElementById('btnSolicitar').addEventListener('click', () => {
-  const nombre   = document.getElementById('nombre').value.trim();
-  const email    = document.getElementById('email').value.trim();
-  const tipo     = document.querySelector('input[name="tipo"]:checked');
-  const longitud = document.querySelector('input[name="longitud"]:checked');
+function showError(fieldId, msg) {
+    clearError(fieldId);
+    const field = document.getElementById(fieldId);
+    if (!field) return;
  
-  if (!nombre || nombre.length < 2) { alert('Por favor introduce tu nombre (mínimo 2 caracteres).'); return; }
-  if (!email || !validEmail(email))  { alert('Por favor introduce un correo electrónico válido.'); return; }
-  if (!tipo)                         { alert('Por favor selecciona el tipo de contenido.'); return; }
-  if (!longitud)                     { alert('Por favor selecciona la longitud del artículo.'); return; }
+    const err = document.createElement('p');
+    err.className = 'field-error';
+    err.setAttribute('data-for', fieldId);
+    err.textContent = msg;
  
-  showToast('✅ ¡Solicitud enviada correctamente!');
+    // Insertar justo después del campo
+    field.insertAdjacentElement('afterend', err);
  
-  // Reset campos
-  document.getElementById('nombre').value = '';
-  document.getElementById('email').value  = '';
-  document.getElementById('medio').value  = '';
-  document.getElementById('fecha').value  = '';
-  document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
-  document.getElementById('otro-tema-wrap').style.display = 'none';
-});
+    if (field.tagName === 'INPUT' || field.tagName === 'TEXTAREA') {
+      field.classList.add('input-error');
+    }
+  }
+ 
+  function clearError(fieldId) {
+    document.querySelectorAll('.field-error[data-for="' + fieldId + '"]')
+      .forEach(e => e.remove());
+    const field = document.getElementById(fieldId);
+    if (field) field.classList.remove('input-error');
+  }
+ 
+  function clearAllErrors() {
+    document.querySelectorAll('.field-error').forEach(e => e.remove());
+    document.querySelectorAll('.input-error').forEach(e => e.classList.remove('input-error'));
+  }
+ 
+  // Limpiar error al escribir en el campo
+  ['nombre', 'email', 'fecha', 'medio'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', () => clearError(id));
+  });
+ 
+  // ── FORMULARIO: SOLICITAR ARTÍCULO ─────────────────────
+  document.getElementById('btnSolicitar').addEventListener('click', () => {
+    clearAllErrors();
+    const nombre   = document.getElementById('nombre').value.trim();
+    const email    = document.getElementById('email').value.trim();
+    const tipo     = document.querySelector('input[name="tipo"]:checked');
+    const longitud = document.querySelector('input[name="longitud"]:checked');
+    let valid = true;
+ 
+    if (!tipo) {
+      showError('tipo', '⚠ Por favor selecciona el tipo de contenido.');
+      valid = false;
+    }
+    if (!longitud) {
+      showError('longitud', '⚠ Por favor selecciona la longitud del artículo.');
+      valid = false;
+    }
+    if (!nombre || nombre.length < 2) {
+      showError('nombre', '⚠ Introduce tu nombre (mínimo 2 caracteres).');
+      valid = false;
+    }
+    if (!email || !validEmail(email)) {
+      showError('email', '⚠ Introduce un correo electrónico válido.');
+      valid = false;
+    }
+    if (!valid) return;
+ 
+    showToast('✅ ¡Solicitud enviada correctamente!');
+    clearAllErrors();
+    document.getElementById('nombre').value = '';
+    document.getElementById('email').value  = '';
+    document.getElementById('medio').value  = '';
+    document.getElementById('fecha').value  = '';
+    document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+  });
  
 // ── Formulario: Contacto ──────────────────────────────
 document.getElementById('btnEnviar').addEventListener('click', () => {
