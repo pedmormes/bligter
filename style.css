@@ -13,7 +13,10 @@
  
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: 'Lato', sans-serif; color: var(--dark); background: var(--white); overflow-x: hidden; }
+body { 
+  font-family: 'Lato', sans-serif; color: var(--dark); background: var(--white); overflow-x: hidden;
+
+}
  
 /* ── NAV ─────────────────────────────────────────────── */
 nav {
@@ -25,7 +28,7 @@ nav {
 .nav-logo { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.4rem; color: var(--white); letter-spacing: 1px; }
 .nav-logo span { color: var(--yellow); }
 .nav-links { display: flex; gap: 2rem; list-style: none; }
-.nav-links a { color: var(--white); text-decoration: none; font-size: .9rem; font-weight: 600; opacity: .85; transition: opacity .2s; }
+.nav-links a { color: var(--yellow); text-decoration: none; font-size: .9rem; font-weight: 600; opacity: .85; transition: opacity .2s; }
 .nav-links a:hover { opacity: 1; }
 .nav-cta {
   background: var(--purple-mid); color: var(--white);
@@ -37,35 +40,11 @@ nav {
 .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
 .hamburger span { display: block; width: 26px; height: 3px; background: var(--white); border-radius: 2px; }
  
-nav{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background-color: var(--white);
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-}
-nav .logo{
-  font-size: 24px;
-  font-weight: bold;
-  color: var(--dark);
-}
-nav .nav-links{
-  display: flex;
-  gap: 20px;
-}
-nav .nav-links a{
-  text-decoration: none;
-  color: var(--dark);
-  font-size: 18px;
-  transition: color 0.3s ease;
-}
-nav .nav-links a:hover{
-  color: var(--purple-mid);
-}
+/* ── MOBILE MENU ─────────────────────────────────────── */
+.mobile-menu { display: none !important; position: fixed; top: 64px; left: 0; width: 100%; z-index: 999; background: var(--darker); flex-direction: column; padding: 1.5rem 5%; }
+.mobile-menu.open { display: flex !important; }
+.mobile-menu a { color: var(--yellow); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.2rem; padding: .75rem 0; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.08); }
+ 
 
 #hero {
   margin-top: 64px; position: relative;

@@ -24,11 +24,11 @@
     </nav>
 
     </header>
-    <div class="mobile-menu">
-        <a href="#como-funciona" onclick="document.getElementById('mobileMenu').classList.toggle('active')">Cómo funciona</a>
-        <a href="#por-que" onclick="document.getElementById('mobileMenu').classList.toggle('active')">Por qué elegirnos</a>
-        <a href="#medios" onclick="document.getElementById('mobileMenu').classList.toggle('active')">Medios</a>
-        <a href="#contacto" onclick="document.getElementById('mobileMenu').classList.toggle('active')">Contacto</a>
+    <div class="mobile-menu" id="mobileMenu">
+    <a href="#como-funciona" onclick="document.getElementById('mobileMenu').classList.remove('open')">Cómo funciona</a>
+    <a href="#por-que"       onclick="document.getElementById('mobileMenu').classList.remove('open')">Por qué elegirnos</a>
+    <a href="#medios"        onclick="document.getElementById('mobileMenu').classList.remove('open')">Medios</a>
+    <a href="#contacto"      onclick="document.getElementById('mobileMenu').classList.remove('open')">Contacto</a>
     </div>
  
     <section id="hero">
