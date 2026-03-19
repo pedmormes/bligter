@@ -1,209 +1,213 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Bligter</title>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
-
-    </head>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BLIGTER – Artículos listos para publicar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
-    <nav>
-    <span class="nav-logo">BLIG<span>TER</span></span>
-    <ul class="nav-links">
-        <li><a href="#como-funciona">Cómo funciona</a></li>
-        <li><a href="#por-que">Por qué elegirnos</a></li>
-        <li><a href="#medios">Medios</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-    </ul>
-    <a href="#solicitar" class="nav-cta">Solicitar artículo</a>
-    <button class="hamburger" id="hamburger" aria-label="Menú">
-        <span></span><span></span><span></span>
-    </button>
-    </nav>
 
-    </header>
-    <div class="mobile-menu" id="mobileMenu">
-    <a href="#como-funciona" onclick="document.getElementById('mobileMenu').classList.remove('open')">Cómo funciona</a>
-    <a href="#por-que"       onclick="document.getElementById('mobileMenu').classList.remove('open')">Por qué elegirnos</a>
-    <a href="#medios"        onclick="document.getElementById('mobileMenu').classList.remove('open')">Medios</a>
-    <a href="#contacto"      onclick="document.getElementById('mobileMenu').classList.remove('open')">Contacto</a>
-    </div>
- 
-    <section id="hero">
-        <div class="hero-content">
-            <h1>Artículos para publicar en tu medio</h1>
-            <p>Creamos contenido para medios digitales</p>
-            <a href="#solicitar" class="btn-hero">Solicitar artículo</a>
-        </div>
-    </section>
+<!-- ── NAV ─────────────────────────────────────────── -->
+<nav>
+  <span class="nav-logo">BLIG<span>TER</span></span>
+  <ul class="nav-links">
+    <li><a href="#como-funciona">Cómo funciona</a></li>
+    <li><a href="#por-que">Por qué elegirnos</a></li>
+    <li><a href="#medios">Medios</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#solicitar" class="nav-cta">Solicitar artículo</a>
+  <button class="hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-    <section id="como-funciona">
-        <div class="cf-left">
-            <h2>CÓMO<br>FUNCIONA</h2>
-            <p>Escribimos artículos relevantes para los lectores de tu medio</p>
-        </div>
-        <div class="cf-right">
-            <div class="cf-item">
-            <div class="cf-check">✓</div>
-            <div class="cf-text">Contenido sobre empleo en tu localidad. <span class="badge-gratis">¡GRATIS!</span></div>
-            </div>
-            <div class="cf-item">
-            <div class="cf-check">✓</div>
-            <div class="cf-text">Contenido sobre vivienda en tu localidad. <span class="badge-gratis">¡GRATIS!</span></div>
-            </div>
-            <div class="cf-item">
-                <div class="cf-check">✓</div>
-                <div class="cf-text">
-                    Contenido sobre motor. <span class="badge-gratis">¡GRATIS!</span>
-                </div>
-            </div>
-            <div class="cf-item">
-                <div class="cf-check">✓</div>
-                <div class="cf-text">
-                    Otros contenidos, a un coste de 5 a 20€ por artículo: dinos la temática y te preparamos el artículo.
-                </div>
-            </div>
-            <p class="cf-note">
-                En los artículos podrás definir la longitud del texto, el formato, incluir una imagen, etc.<br><br>
-                No realizamos contenidos sobre actualidad política, económica, social, etc.
-            </p>
-    </div>
-    </section>
+<!-- ── MOBILE MENU ─────────────────────────────────── -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#como-funciona" onclick="document.getElementById('mobileMenu').classList.remove('open')">Cómo funciona</a>
+  <a href="#por-que"       onclick="document.getElementById('mobileMenu').classList.remove('open')">Por qué elegirnos</a>
+  <a href="#medios"        onclick="document.getElementById('mobileMenu').classList.remove('open')">Medios</a>
+  <a href="#contacto"      onclick="document.getElementById('mobileMenu').classList.remove('open')">Contacto</a>
+</div>
 
-    <section id="por-que">
-         <h2>Por qué elegirnos</h2>
-        <div class="cards-grid">
-            <div class="cards-item">
-                <div class="card">
-                    <div class="card-icon">🤖</div>
-                    <p>
-                        Artículos creados con ayuda de la IA y revisados por personas
-                    </p>
-                </div>
-
-            </div>
-                <div class="card">
-                    <div class="card-icon">📊</div>
-                    <p>Contenido exclusivo optimizado para SEO</p>
-                    <span class="badge-gratuito">GRATUITO</span>
-                </div>
-                    <div class="card">
-                    <div class="card-icon">⚡</div>
-                    <p>Entregas rápidas y listas para copiar y pegar</p>
-                </div>
-        </div>
-    </section>
-
-    <section id="solicitar">
-    <h2>SOLICITA TU ARTÍCULO</h2>
-    <p class="subtitle">Rellena el formulario sin compromiso para que redactemos tu artículo</p>
-    <div class="form-wrap">
-    
-        <div class="form-group">
-        <label>Elige el tipo de contenido que necesitas *</label>
-        <div class="radio-group" id="tipo" data-error="tipo">
-            <label class="radio-item"><input type="radio" name="tipo" id="t1" value="empleo">Contenido sobre empleo - ¡GRATIS!</label>
-            <label class="radio-item"><input type="radio" name="tipo" id="t2" value="vivienda">Contenido sobre vivienda - ¡GRATIS!</label>
-            <label class="radio-item"><input type="radio" name="tipo" id="t3" value="motor">Contenido sobre motor - ¡GRATIS!</label>
-            <label class="radio-item"><input type="radio" name="tipo" id="t4" value="otros">Otros contenidos (5-20€ por artículo)</label>
-        </div>
-        </div>
-    
-        <div class="form-group" id="otro-tema-wrap">
-        <label for="otro-tema">Dinos otra temática <small>(No realizamos contenidos sobre actualidad política, económica, social, etc.)</small></label>
-        <textarea id="otro-tema" rows="3" placeholder="Escribe la temática aquí..." maxlength="500"></textarea>
-        </div>
-    
-        <div class="form-group">
-        <label>Longitud del artículo *</label>
-        <div class="radio-group" id="longitud" data-error="longitud">
-            <label class="radio-item"><input type="radio" name="longitud" id="l1" value="menos300">Menos de 300 palabras</label>
-            <label class="radio-item"><input type="radio" name="longitud" id="l2" value="300-600">Entre 300 y 600</label>
-            <label class="radio-item"><input type="radio" name="longitud" id="l3" value="600-1000">Entre 600 y 1000</label>
-            <label class="radio-item"><input type="radio" name="longitud" id="l4" value="mas1000">Más de 1000</label>
-        </div>
-        </div>
-    
-        <div class="form-group">
-        <label for="medio">Medio en el que se va a publicar el artículo</label>
-        <input type="text" id="medio" placeholder="Nombre de tu medio digital" minlength="2" maxlength="100">
-        </div>
-    
-        <div class="form-group">
-        <label for="nombre">Tu nombre *</label>
-        <input type="text" id="nombre" placeholder="Tu nombre completo" maxlength="80">
-        </div>
-    
-        <div class="form-group">
-        <label for="email">Tu correo electrónico *</label>
-        <input type="email" id="email" placeholder="correo@ejemplo.com">
-        </div>
-    
-        <div class="form-group">
-        <label for="fecha">Fecha de entrega deseada</label>
-        <input type="date" id="fecha">
-        </div>
-    
-        <button class="btn-submit" id="btnSolicitar">Solicitar</button>
-        <p style="font-size:.75rem; color:#999; margin-top:.6rem; text-align:center;">Nunca envíes contraseñas.</p>
-    </div>
-    </section>
-
-
-    <section id="medios">
-        <h2>Medios que nos publican</h2>
-        <p class="sub">+ de 100 medios publican regularmente los artículos que escribimos para ellos</p>
-        <div class="logos-grid">
-            <div class="logo-card" style="color:#2b7a2b; font-size:.78rem;">desdesoria<br><small style="opacity:.7">TU PERIÓDICO</small></div>
-            <div class="logo-card" style="color:#c0392b; font-size:.78rem;">La Comarca<br><small>de Puertollano</small></div>
-            <div class="logo-card" style="color:#444; font-size:.78rem;">Mirador<br><small style="opacity:.7">de Madrid</small></div>
-            <div class="logo-card" style="color:#1a6abf;">Rotaaldía.com</div>
-            <div class="logo-card" style="font-size:.78rem;">LEO RADIO<br><small>104.1 FM</small></div>
-            <div class="logo-card"><span style="color:#e00; font-weight:900;">ALCALA</span><span style="font-weight:900;">HOY</span></div>
-        </div>
-    </section>
-
-    <section id="testimonios">
-        <h2>Comentarios de nuestros usuarios</h2>
-        <div class="carousel">
-            <div class="testimonial-card" id="testimonialCard">
-                <div class="avatar">👤</div>
-                    <div class="testimonial-body">
-                        <p id="tQuote">"No teníamos una sección de empleo y ahora es una de las más leídas y compartidas. Desde que usamos Bligter, cada semana recibimos un artículo con las ofertas de empleo más interesantes en nuestra localidad que los lectores agradecen."</p>
-                        <strong id="tName">Julia Sancristobal</strong>
-                    </div>
-                </div>
-                <div class="carousel-btns">
-                    <button onclick="prevT()">‹</button>
-                    <button onclick="nextT()">›</button>
-            </div>
-        </div>
-    </section>
-
-    <section id="contacto">
-    <div class="contact-left">
-        <h2>Contacta<br>con<br>nosotros</h2>
-    </div>
-    <div class="contact-right">
-        <label for="msg">Escríbenos un email</label>
-        <textarea id="msg" rows="4" placeholder="Tu mensaje..."></textarea>
-        <label for="cemail">Tu correo electrónico *</label>
-        <input type="email" id="cemail" placeholder="correo@ejemplo.com" required>
-        <button class="btn-enviar" id="btnEnviar">Enviar</button>
-        <p class="contact-note">Nunca envíes contraseñas.</p>
+<!-- ── HERO ────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-content">
+    <h1>Artículos listos para publicar en tu medio</h1>
+    <p>Creamos contenido para medios digitales</p>
+    <a href="#solicitar" class="btn-hero">SOLICITAR ARTÍCULO</a>
   </div>
-</section> 
+</section>
 
+<!-- ── CÓMO FUNCIONA ───────────────────────────────── -->
+<section id="como-funciona">
+  <div class="cf-left">
+    <h2>CÓMO<br>FUNCIONA</h2>
+    <p>Escribimos artículos relevantes para los lectores de tu medio</p>
+  </div>
+  <div class="cf-right">
+    <div class="cf-item">
+      <div class="cf-check">✓</div>
+      <div class="cf-text">Contenido sobre empleo en tu localidad. <span class="badge-gratis">¡GRATIS!</span></div>
+    </div>
+    <div class="cf-item">
+      <div class="cf-check">✓</div>
+      <div class="cf-text">Contenido sobre vivienda en tu localidad. <span class="badge-gratis">¡GRATIS!</span></div>
+    </div>
+    <div class="cf-item">
+      <div class="cf-check">✓</div>
+      <div class="cf-text">Contenido sobre motor. <span class="badge-gratis">¡GRATIS!</span></div>
+    </div>
+    <div class="cf-item">
+      <div class="cf-check">✓</div>
+      <div class="cf-text">Otros contenidos, a un coste de 5 a 20€ por artículo: dinos la temática y te preparamos el artículo.</div>
+    </div>
+    <p class="cf-note">
+      En los artículos podrás definir la longitud del texto, el formato, incluir una imagen, etc.<br><br>
+      No realizamos contenidos sobre actualidad política, económica, social, etc.
+    </p>
+  </div>
+</section>
+
+<!-- ── POR QUÉ ELEGIRNOS ───────────────────────────── -->
+<section id="por-que">
+  <h2>Por qué elegirnos</h2>
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-icon">🤖</div>
+      <p>Artículos creados con ayuda de la IA y revisados por personas</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📊</div>
+      <p>Contenido exclusivo optimizado para SEO</p>
+      <span class="badge-gratuito">GRATUITO</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <p>Entregas rápidas y listas para copiar y pegar</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOLICITA TU ARTÍCULO ────────────────────────── -->
+<section id="solicitar">
+  <h2>SOLICITA TU ARTÍCULO</h2>
+  <p class="subtitle">Rellena el formulario sin compromiso para que redactemos tu artículo</p>
+  <div class="form-wrap">
+
+    <div class="form-group">
+      <label>Elige el tipo de contenido que necesitas *</label>
+      <div class="radio-group" id="tipo" data-error="tipo">
+        <label class="radio-item"><input type="radio" name="tipo" id="t1" value="empleo">Contenido sobre empleo - ¡GRATIS!</label>
+        <label class="radio-item"><input type="radio" name="tipo" id="t2" value="vivienda">Contenido sobre vivienda - ¡GRATIS!</label>
+        <label class="radio-item"><input type="radio" name="tipo" id="t3" value="motor">Contenido sobre motor - ¡GRATIS!</label>
+        <label class="radio-item"><input type="radio" name="tipo" id="t4" value="otros">Otros contenidos (5-20€ por artículo)</label>
+      </div>
+    </div>
+
+    <div class="form-group" id="otro-tema-wrap">
+      <label for="otro-tema">Dinos otra temática <small>(No realizamos contenidos sobre actualidad política, económica, social, etc.)</small></label>
+      <textarea id="otro-tema" rows="3" placeholder="Escribe la temática aquí..." maxlength="500"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Longitud del artículo *</label>
+      <div class="radio-group" id="longitud" data-error="longitud">
+        <label class="radio-item"><input type="radio" name="longitud" id="l1" value="menos300">Menos de 300 palabras</label>
+        <label class="radio-item"><input type="radio" name="longitud" id="l2" value="300-600">Entre 300 y 600</label>
+        <label class="radio-item"><input type="radio" name="longitud" id="l3" value="600-1000">Entre 600 y 1000</label>
+        <label class="radio-item"><input type="radio" name="longitud" id="l4" value="mas1000">Más de 1000</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="medio">Medio en el que se va a publicar el artículo</label>
+      <input type="text" id="medio" placeholder="Nombre de tu medio digital" minlength="2" maxlength="100">
+    </div>
+
+    <div class="form-group">
+      <label for="nombre">Tu nombre *</label>
+      <input type="text" id="nombre" placeholder="Tu nombre completo" maxlength="80">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Tu correo electrónico *</label>
+      <input type="email" id="email" placeholder="correo@ejemplo.com">
+    </div>
+
+    <div class="form-group">
+      <label for="fecha">Fecha de entrega deseada</label>
+      <input type="date" id="fecha">
+    </div>
+
+    <button class="btn-submit" id="btnSolicitar">Solicitar</button>
+    <p style="font-size:.75rem; color:#999; margin-top:.6rem; text-align:center;">Nunca envíes contraseñas.</p>
+  </div>
+</section>
+
+<!-- ── MEDIOS ───────────────────────────────────────── -->
+<section id="medios">
+  <h2>Medios que nos publican</h2>
+  <p class="sub">+ de 100 medios publican regularmente los artículos que escribimos para ellos</p>
+  <div class="logos-grid">
+    <div class="logo-card" style="color:#2b7a2b; font-size:.78rem;">desdesoria<br><small style="opacity:.7">TU PERIÓDICO</small></div>
+    <div class="logo-card" style="color:#c0392b; font-size:.78rem;">La Comarca<br><small>de Puertollano</small></div>
+    <div class="logo-card" style="color:#444; font-size:.78rem;">Mirador<br><small style="opacity:.7">de Madrid</small></div>
+    <div class="logo-card" style="color:#1a6abf;">Rotaaldía.com</div>
+    <div class="logo-card" style="font-size:.78rem;">LEO RADIO<br><small>104.1 FM</small></div>
+    <div class="logo-card"><span style="color:#e00; font-weight:900;">ALCALA</span><span style="font-weight:900;">HOY</span></div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIOS ─────────────────────────────────── -->
+<section id="testimonios">
+  <h2>Comentarios de nuestros usuarios</h2>
+  <div class="carousel">
+    <div class="testimonial-card" id="testimonialCard">
+      <div class="avatar">👤</div>
+      <div class="testimonial-body">
+        <p id="tQuote">"No teníamos una sección de empleo y ahora es una de las más leídas y compartidas. Desde que usamos Bligter, cada semana recibimos un artículo con las ofertas de empleo más interesantes en nuestra localidad que los lectores agradecen."</p>
+        <strong id="tName">Julia Sancristobal</strong>
+      </div>
+    </div>
+    <div class="carousel-btns">
+      <button onclick="prevT()">‹</button>
+      <button onclick="nextT()">›</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACTO ────────────────────────────────────── -->
+<section id="contacto">
+  <div class="contact-left">
+    <h2>Contacta<br>con<br>nosotros</h2>
+  </div>
+  <div class="contact-right">
+    <label for="msg">Escríbenos un email</label>
+    <textarea id="msg" rows="4" placeholder="Tu mensaje..."></textarea>
+    <label for="cemail">Tu correo electrónico *</label>
+    <input type="email" id="cemail" placeholder="correo@ejemplo.com">
+    <button class="btn-enviar" id="btnEnviar">Enviar</button>
+    <p class="contact-note">Nunca envíes contraseñas.</p>
+  </div>
+</section>
+
+<!-- ── FOOTER ──────────────────────────────────────── -->
 <footer>
   <span class="footer-logo">BLIG<span>TER</span></span>
   <div class="footer-links">
     <a href="#">Condiciones de uso</a>
     <a href="#">Política de Cookies</a>
+    <a href="#" id="resetCookies">Restablecer cookies</a>
   </div>
 </footer>
 
+<!-- ── TOAST ───────────────────────────────────────── -->
+<div id="toast">✅ ¡Listo!</div>
+
+<!-- ── BANNER DE COOKIES ────────────────────────────── -->
 <div id="cookie-banner">
   <div id="cookie-content">
     <p>🍪 Usamos cookies propias y de terceros para mejorar tu experiencia.
@@ -215,12 +219,11 @@
     </div>
   </div>
 </div>
- 
+
 <!-- ── MODAL DE CONFIGURACIÓN DE COOKIES ────────────── -->
 <div id="cookie-modal">
   <div id="cookie-modal-box">
     <h3>🍪 Configurar cookies</h3>
- 
     <div class="cookie-option">
       <div>
         <strong>Necesarias</strong>
@@ -228,7 +231,6 @@
       </div>
       <input type="checkbox" checked disabled>
     </div>
- 
     <div class="cookie-option">
       <div>
         <strong>Analíticas</strong>
@@ -236,7 +238,6 @@
       </div>
       <input type="checkbox" id="ck-analiticas">
     </div>
- 
     <div class="cookie-option">
       <div>
         <strong>Marketing</strong>
@@ -244,7 +245,6 @@
       </div>
       <input type="checkbox" id="ck-marketing">
     </div>
- 
     <div id="modal-buttons">
       <button id="btn-cancelar">Cancelar</button>
       <button id="btn-guardar">Guardar preferencias</button>
@@ -252,8 +252,8 @@
   </div>
 </div>
 
-<div id="toast">✅ ¡Listo!</div>
-
+<!-- ── BOTÓN SUBIR ───────────────────────────────────── -->
+<button id="btnTop" aria-label="Volver arriba">&#8679;</button>
 
 <script src="script.js"></script>
 </body>
