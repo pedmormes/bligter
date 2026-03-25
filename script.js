@@ -16,22 +16,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── COOKIES ────────────────────────────────────────────
 
   function ocultarBanner() {
-    const banner = document.getElementById('cookie-banner');
-    banner.classList.remove('visible');
+    document.getElementById('cookie-banner').classList.remove('visible');
     document.getElementById('cookie-modal').classList.remove('visible');
-    // Elimina el padding cuando termina la transición
-    banner.addEventListener('transitionend', () => {
-      document.body.style.paddingBottom = '';
-    }, { once: true });
+    document.body.style.paddingBottom = '';
   }
 
   function mostrarBanner() {
     document.getElementById('cookie-banner').classList.add('visible');
-    // Espera a que el banner esté en el DOM para medir su altura
     setTimeout(() => {
       const h = document.getElementById('cookie-banner').offsetHeight;
       document.body.style.paddingBottom = h + 'px';
-    }, 50);
+    }, 100);
   }
 
   function aplicarCookies(analiticas, marketing) {
@@ -55,14 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
     showToast('✅ Preferencias de cookies guardadas');
   }
 
-  // Mostrar banner si el usuario no ha elegido aún
-  if (!localStorage.getItem('cookies_configuradas')) {
-    mostrarBanner();
-  } else {
-    const analiticas = localStorage.getItem('cookies_analiticas') === 'true';
-    const marketing  = localStorage.getItem('cookies_marketing')  === 'true';
-    aplicarCookies(analiticas, marketing);
-  }
+  // Mostrar banner siempre al entrar
+  mostrarBanner();
 
   // Botón: Solo necesarias
   document.getElementById('btn-rechazar').addEventListener('click', () => {
