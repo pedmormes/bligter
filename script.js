@@ -1,5 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ── ENVÍO POR PHP ──────────────────────────────────────
+  const PHP_URL = 'send.php';
+
+  async function enviarFormulario(datos) {
+    const response = await fetch(PHP_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(datos)
+    });
+    return await response.json();
+  }
+
   // ── TOAST ─────────────────────────────────────────────
   function showToast(msg) {
     const t = document.getElementById('toast');
@@ -190,6 +202,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const email    = document.getElementById('email').value.trim();
     const tipo     = document.querySelector('input[name="tipo"]:checked');
     const longitud = document.querySelector('input[name="longitud"]:checked');
+    const medio    = document.getElementById('medio').value.trim();
+    const fecha    = document.getElementById('fecha').value;
+    const tematica = document.getElementById('otro-tema').value.trim();
     let valid = true;
 
     if (!tipo) {
@@ -210,26 +225,78 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (!valid) return;
 
-    showToast('✅ ¡Solicitud enviada correctamente!');
-    clearAllErrors();
-    document.getElementById('nombre').value = '';
-    document.getElementById('email').value  = '';
-    document.getElementById('medio').value  = '';
-    document.getElementById('fecha').value  = '';
-    document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+    const btn = document.getElementById('btnSolicitar');
+    btn.textContent = 'Enviando...';
+    btn.disabled = true;
+
+    const datos = new FormData();
+    datos.append('tipo',      tipo.value);
+    datos.append('longitud',  longitud.value);
+    datos.append('medio',     medio);
+    datos.append('nombre',    nombre);
+    datos.append('email',     email);
+    datos.append('fecha',     fecha);
+    datos.append('tematica',  tematica);
+
+    fetch('send.php', { method: 'POST', body: datos })
+    .then(res => res.json())
+    .then(data => {
+      if (data.ok) {
+        showToast('✅ ¡Solicitud enviada correctamente!');
+        clearAllErrors();
+        document.getElementById('nombre').value     = '';
+        document.getElementById('email').value      = '';
+        document.getElementById('medio').value      = '';
+        document.getElementById('fecha').value      = '';
+        document.getElementById('otro-tema').value  = '';
+        document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+      } else {
+        showToast('❌ Error al enviar. Inténtalo de nuevo.');
+      }
+    })
+    .catch(() => showToast('❌ Error al enviar. Inténtalo de nuevo.'))
+    .finally(() => {
+      btn.textContent = 'Solicitar';
+      btn.disabled = false;
+    });
   });
 
   // ── FORMULARIO: CONTACTO ───────────────────────────────
   document.getElementById('btnEnviar').addEventListener('click', () => {
     clearError('cemail');
     const email = document.getElementById('cemail').value.trim();
+    const msg   = document.getElementById('msg').value.trim();
     if (!email || !validEmail(email)) {
       showError('cemail', '⚠ Introduce un correo electrónico válido.');
       return;
     }
-    showToast('📩 ¡Mensaje enviado!');
-    document.getElementById('msg').value    = '';
-    document.getElementById('cemail').value = '';
+
+    const btn = document.getElementById('btnEnviar');
+    btn.textContent = 'Enviando...';
+    btn.disabled = true;
+
+    const datos = new FormData();
+    datos.append('tipo',     'Contacto');
+    datos.append('nombre',   'Visitante');
+    datos.append('email',    email);
+    datos.append('tematica', msg);
+
+    fetch('send.php', { method: 'POST', body: datos })
+    .then(res => res.json())
+    .then(data => {
+      if (data.ok) {
+        showToast('📩 ¡Mensaje enviado!');
+        document.getElementById('msg').value    = '';
+        document.getElementById('cemail').value = '';
+      } else {
+        showToast('❌ Error al enviar. Inténtalo de nuevo.');
+      }
+    })
+    .catch(() => showToast('❌ Error al enviar. Inténtalo de nuevo.'))
+    .finally(() => {
+      btn.textContent = 'Enviar';
+      btn.disabled = false;
+    });
   });
   document.getElementById('cemail').addEventListener('input', () => clearError('cemail'));
 
