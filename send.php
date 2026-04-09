@@ -1,10 +1,12 @@
 <?php
 // ── CONFIGURACIÓN ──────────────────────────────────────
-$destinatario = "pedmormes@gmail.com";
+$gmail_usuario    = "TU_CORREO@gmail.com";       // Tu cuenta de Gmail
+$gmail_password   = "yqwy zpqw bdhz cocxz";       // Contraseña de aplicación (16 caracteres)
+$destinatario     = "pedmormes@gmail.com";        // Email donde recibirás los formularios
 $asunto_solicitud = "Nueva solicitud de artículo – BLIGTER";
 $asunto_contacto  = "Nuevo mensaje de contacto – BLIGTER";
 
-// ── CABECERAS CORS (para pruebas en local) ─────────────
+// ── CABECERAS CORS ─────────────────────────────────────
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
@@ -14,20 +16,20 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     exit;
 }
 
-// ── LEER DATOS JSON ────────────────────────────────────
+// ── LEER DATOS ─────────────────────────────────────────
 $datos = json_decode(file_get_contents("php://input"), true);
 if (!$datos) {
     echo json_encode(["ok" => false, "error" => "Datos no válidos"]);
     exit;
 }
 
-$tipo      = htmlspecialchars($datos["tipo"]      ?? "");
-$longitud  = htmlspecialchars($datos["longitud"]  ?? "");
-$medio     = htmlspecialchars($datos["medio"]     ?? "");
-$nombre    = htmlspecialchars($datos["nombre"]    ?? "");
-$email     = htmlspecialchars($datos["email"]     ?? "");
-$fecha     = htmlspecialchars($datos["fecha"]     ?? "");
-$tematica  = htmlspecialchars($datos["tematica"]  ?? "");
+$tipo       = htmlspecialchars($datos["tipo"]       ?? "");
+$longitud   = htmlspecialchars($datos["longitud"]   ?? "");
+$medio      = htmlspecialchars($datos["medio"]      ?? "");
+$nombre     = htmlspecialchars($datos["nombre"]     ?? "");
+$email      = htmlspecialchars($datos["email"]      ?? "");
+$fecha      = htmlspecialchars($datos["fecha"]      ?? "");
+$tematica   = htmlspecialchars($datos["tematica"]   ?? "");
 $formulario = $datos["formulario"] ?? "solicitud";
 
 // ── VALIDAR EMAIL ──────────────────────────────────────
@@ -36,18 +38,44 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-// ── CONSTRUIR MENSAJE ──────────────────────────────────
-if ($formulario === "contacto") {
-    $asunto  = $asunto_contacto;
-    $mensaje = "
+// ── CARGAR PHPMAILER ───────────────────────────────────
+require 'src/Exception.php';
+require 'src/PHPMailer.php';
+require 'src/SMTP.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+$mail = new PHPMailer(true);
+
+try {
+    // Configuración SMTP Gmail
+    $mail->isSMTP();
+    $mail->Host       = 'smtp.gmail.com';
+    $mail->SMTPAuth   = true;
+    $mail->Username   = $gmail_usuario;
+    $mail->Password   = $gmail_password;
+    $mail->SMTPSecure = 'tls';
+    $mail->Port       = 587;
+    $mail->CharSet    = 'UTF-8';
+
+    // Remitente y destinatario
+    $mail->setFrom($gmail_usuario, 'BLIGTER Web');
+    $mail->addAddress($destinatario);
+    $mail->addReplyTo($email, $nombre);
+
+    // Contenido del email
+    if ($formulario === "contacto") {
+        $mail->Subject = $asunto_contacto;
+        $mail->Body    = "
 === NUEVO MENSAJE DE CONTACTO ===
 
 Mensaje:  $tematica
 Email:    $email
-";
-} else {
-    $asunto  = $asunto_solicitud;
-    $mensaje = "
+        ";
+    } else {
+        $mail->Subject = $asunto_solicitud;
+        $mail->Body    = "
 === NUEVA SOLICITUD DE ARTÍCULO ===
 
 Nombre:            $nombre
@@ -57,20 +85,13 @@ Longitud:          $longitud
 Medio:             $medio
 Fecha deseada:     $fecha
 Temática extra:    $tematica
-";
-}
+        ";
+    }
 
-// ── CABECERAS DEL EMAIL ────────────────────────────────
-$cabeceras  = "From: noreply@bligter.com\r\n";
-$cabeceras .= "Reply-To: $email\r\n";
-$cabeceras .= "Content-Type: text/plain; charset=UTF-8\r\n";
-
-// ── ENVIAR ─────────────────────────────────────────────
-$enviado = mail($destinatario, $asunto, $mensaje, $cabeceras);
-
-if ($enviado) {
+    $mail->send();
     echo json_encode(["ok" => true]);
-} else {
-    echo json_encode(["ok" => false, "error" => "Error al enviar el email"]);
+
+} catch (Exception $e) {
+    echo json_encode(["ok" => false, "error" => $e->getMessage()]);
 }
 ?>
