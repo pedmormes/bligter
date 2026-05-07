@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // ── ENVÍO POR PHP ──────────────────────────────────────
-  const PHP_URL = 'send.php';
+  const PHP_URL = 'http://100.115.92.202/bligter/send.php';
 
   async function enviarFormulario(datos) {
     const response = await fetch(PHP_URL, {

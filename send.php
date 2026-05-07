@@ -1,14 +1,22 @@
 <?php
 // ── CONFIGURACIÓN ──────────────────────────────────────
-$gmail_usuario    = "TU_CORREO@gmail.com";       // Tu cuenta de Gmail
-$gmail_password   = "yqwy zpqw bdhz cocxz";       // Contraseña de aplicación (16 caracteres)
-$destinatario     = "pedmormes@gmail.com";        // Email donde recibirás los formularios
+$gmail_usuario    = "pedmormes@gmail.com";
+$gmail_password   = "yqwy zpqw bdhz cocxz";
+$destinatario     = "pedmormes@gmail.com";
 $asunto_solicitud = "Nueva solicitud de artículo – BLIGTER";
 $asunto_contacto  = "Nuevo mensaje de contacto – BLIGTER";
 
-// ── CABECERAS CORS ─────────────────────────────────────
+// ── CABECERAS CORS (para pruebas en local) ─────────────
 header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json; charset=UTF-8");
+
+// Responder a preflight OPTIONS
+if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
+    http_response_code(200);
+    exit;
+}
 
 // ── SOLO ACEPTAR POST ──────────────────────────────────
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
@@ -38,6 +46,12 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
+// ── COMPROBAR QUE EXISTE LA CARPETA src ───────────────
+if (!file_exists('src/PHPMailer.php')) {
+    echo json_encode(["ok" => false, "error" => "No se encuentra src/PHPMailer.php. Comprueba la carpeta src."]);
+    exit;
+}
+
 // ── CARGAR PHPMAILER ───────────────────────────────────
 require 'src/Exception.php';
 require 'src/PHPMailer.php';
@@ -49,49 +63,40 @@ use PHPMailer\PHPMailer\Exception;
 $mail = new PHPMailer(true);
 
 try {
-    // Configuración SMTP Gmail
+    // Debug SMTP — muestra errores detallados
+    $mail->SMTPDebug  = 0; // Cambia a 2 para ver logs completos en pantalla
+    $mail->Debugoutput = function($str, $level) {
+        error_log("PHPMailer: $str");
+    };
+
     $mail->isSMTP();
     $mail->Host       = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;
     $mail->Username   = $gmail_usuario;
     $mail->Password   = $gmail_password;
-    $mail->SMTPSecure = 'tls';
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port       = 587;
     $mail->CharSet    = 'UTF-8';
 
-    // Remitente y destinatario
     $mail->setFrom($gmail_usuario, 'BLIGTER Web');
     $mail->addAddress($destinatario);
-    $mail->addReplyTo($email, $nombre);
+    $mail->addReplyTo($email, $nombre ?: 'Visitante');
 
-    // Contenido del email
     if ($formulario === "contacto") {
         $mail->Subject = $asunto_contacto;
-        $mail->Body    = "
-=== NUEVO MENSAJE DE CONTACTO ===
-
-Mensaje:  $tematica
-Email:    $email
-        ";
+        $mail->Body    = "=== NUEVO MENSAJE DE CONTACTO ===\n\nMensaje: $tematica\nEmail: $email";
     } else {
         $mail->Subject = $asunto_solicitud;
-        $mail->Body    = "
-=== NUEVA SOLICITUD DE ARTÍCULO ===
-
-Nombre:            $nombre
-Email:             $email
-Tipo de contenido: $tipo
-Longitud:          $longitud
-Medio:             $medio
-Fecha deseada:     $fecha
-Temática extra:    $tematica
-        ";
+        $mail->Body    = "=== NUEVA SOLICITUD DE ARTÍCULO ===\n\nNombre: $nombre\nEmail: $email\nTipo: $tipo\nLongitud: $longitud\nMedio: $medio\nFecha: $fecha\nTemática: $tematica";
     }
 
     $mail->send();
     echo json_encode(["ok" => true]);
 
 } catch (Exception $e) {
-    echo json_encode(["ok" => false, "error" => $e->getMessage()]);
+    echo json_encode([
+        "ok"    => false,
+        "error" => $mail->ErrorInfo
+    ]);
 }
 ?>
